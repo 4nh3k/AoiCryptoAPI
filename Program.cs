@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configure MongoDB
 builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
-    new MongoClient(builder.Configuration.GetConnectionString("MongoDb")));
+    new MongoClient(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
 
 builder.Services.AddSingleton(sp =>
 {
@@ -27,6 +27,8 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
+builder.WebHost.UseUrls($"http://*:{port}");
 
 var app = builder.Build();
 
