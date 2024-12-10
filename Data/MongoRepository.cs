@@ -28,5 +28,13 @@ namespace AoiCryptoAPI.Data
 
         public List<T> Find(Expression<Func<T, bool>> filter) =>
             _collection.Find(filter).ToList();
+
+        public void InsertMany(List<T> entities)
+        {
+            if (entities != null && entities.Count > 0)
+            {
+                _collection.InsertMany(entities);
+            }
+        }
     }
 }
