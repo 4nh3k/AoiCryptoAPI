@@ -40,6 +40,12 @@ namespace AoiCryptoAPI.Extensions
             services.AddScoped<ProjectService>();
             services.AddScoped<AllowlistService>();
             services.AddScoped<TokenService>();
+            services.AddScoped<ImageUploadService>(sp =>
+            {
+                var apiKey = Environment.GetEnvironmentVariable("IMGBB_API_KEY")
+                            ?? throw new ArgumentNullException("IMGBB_API_KEY not found in environment variables");
+                return new ImageUploadService(sp.GetRequiredService<IHttpClientFactory>(), apiKey);
+            });
         }
     }
 }

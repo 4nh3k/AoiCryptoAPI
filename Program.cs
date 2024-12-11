@@ -6,6 +6,7 @@ builder.Services.AddMongoDB(Environment.GetEnvironmentVariable("CONNECTION_STRIN
 
 builder.Services.AddRepositories();
 
+builder.Services.AddHttpClient();
 builder.Services.AddServices();
 
 builder.Services.AddControllers();
