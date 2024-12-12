@@ -12,7 +12,7 @@ namespace AoiCryptoAPI.Models
         public string PoolAddress { get; set; }
         public string TokenAddress { get; set; }
         public string Name { get; set; }
-        public string Title { get; set; }
+        public string Overview { get; set; }
         public string Description { get; set; }
         public string ImageBannerUrl { get; set; }
     }

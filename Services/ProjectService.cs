@@ -21,5 +21,8 @@ namespace AoiCryptoAPI.Services
         public void Update(string id, Project project) => _repository.Update(id, project);
 
         public void Delete(string id) => _repository.Delete(id);
+
+        public Project FindByAddress(string address) =>
+            _repository.Find(project => project.PoolAddress == address).FirstOrDefault();
     }
 }

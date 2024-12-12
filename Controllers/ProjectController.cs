@@ -65,5 +65,18 @@ namespace AoiCryptoAPI.Controllers
             _projectService.Delete(id);
             return NoContent();
         }
+
+        [HttpGet("address/{address}")]
+        public ActionResult<Project> GetByAddress(string address)
+        {
+            var project = _projectService.FindByAddress(address);
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return project;
+        }
     }
 }
