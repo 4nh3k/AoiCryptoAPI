@@ -84,10 +84,10 @@ namespace AoiCryptoAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost("is-allowed")]
-        public ActionResult IsAllow([FromBody] IsAllowedRequest request)
+        [HttpPost("is-allowed/{poolAddress}/{userAddresses}")]
+        public ActionResult IsAllow(string poolAddress, List<string> userAddresses)
         {
-            var isAllowed = _allowlistService.IsAllowed(request.UserAddresses, request.PoolAddress);
+            var isAllowed = _allowlistService.IsAllowed(userAddresses, poolAddress);
             return Ok(new { isAllowed });
         }
     }
@@ -97,10 +97,5 @@ namespace AoiCryptoAPI.Controllers
         public string PoolAddress { get; set; }
         public List<string> UserAddresses { get; set; }
         public string Status { get; set; }
-    }
-    public class IsAllowedRequest
-    {
-        public string PoolAddress { get; set; }
-        public string UserAddresses { get; set; }
     }
 }
