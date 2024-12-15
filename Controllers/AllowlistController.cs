@@ -84,10 +84,10 @@ namespace AoiCryptoAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost("is-allowed/{poolAddress}/{userAddresses}")]
-        public ActionResult IsAllow(string poolAddress, List<string> userAddresses)
+        [HttpGet("is-allowed/{poolAddress}/{userAddress}")]
+        public ActionResult IsAllow(string poolAddress, string userAddress)
         {
-            var isAllowed = _allowlistService.IsAllowed(userAddresses, poolAddress);
+            var isAllowed = _allowlistService.IsAllowed(userAddress, poolAddress);
             return Ok(new { isAllowed });
         }
     }
