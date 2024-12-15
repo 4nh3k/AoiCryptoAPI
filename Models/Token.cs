@@ -14,5 +14,7 @@ namespace AoiCryptoAPI.Models
         public string Symbol { get; set; }
         public decimal InitialSupply { get; set; }
         public decimal MaxSupply { get; set; }
+        public string? TokenLogo { get; set; }
+
     }
 }

@@ -15,5 +15,6 @@ namespace AoiCryptoAPI.Models
         public string Overview { get; set; }
         public string Description { get; set; }
         public string ImageBannerUrl { get; set; }
+        public string? ProjectLogo { get; set; }
     }
 }

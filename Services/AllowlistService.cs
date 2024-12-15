@@ -36,5 +36,14 @@ namespace AoiCryptoAPI.Services
                 _repository.InsertMany(entries);
             }
         }
+
+        public bool IsAllowed(string userAddress, string poolAddress)
+        {
+            var allowlistEntry = _repository.Find(entry =>
+                entry.UserAddress == userAddress &&
+                entry.PoolAddress == poolAddress);
+
+            return allowlistEntry.Count > 0;
+        }
     }
 }
