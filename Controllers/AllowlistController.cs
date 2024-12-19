@@ -27,7 +27,7 @@ namespace AoiCryptoAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(entries);
+            return Ok(entries.GroupBy(e => e.PoolAddress));
         }
 
         [HttpGet("user/{userAddress}")]
@@ -38,7 +38,7 @@ namespace AoiCryptoAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(entries);
+            return Ok(entries.GroupBy(e => e.UserAddress));
         }
 
         [HttpPost("bulk")]
@@ -46,12 +46,14 @@ namespace AoiCryptoAPI.Controllers
         {
             var entries = new List<AllowlistEntry>();
 
-            foreach (var userAddress in request.UserAddresses)
+            foreach (var userInfor in request.UserInfors)
             {
                 entries.Add(new AllowlistEntry
                 {
                     PoolAddress = request.PoolAddress,
-                    UserAddress = userAddress,
+                    UserAddress = userInfor.UserAddress,
+                    EmailAddress = userInfor.EmailAddress,
+                    UserFullName = userInfor.UserFullName,
                     Status = request.Status
                 });
             }
@@ -95,7 +97,14 @@ namespace AoiCryptoAPI.Controllers
     public class BulkAllowlistRequest
     {
         public string PoolAddress { get; set; }
-        public List<string> UserAddresses { get; set; }
+        public List<UserInformation> UserInfors { get; set; }
         public string Status { get; set; }
+    }
+
+    public class UserInformation
+    {
+        public string UserAddress { get; set; }
+        public string EmailAddress { get; set; }
+        public string UserFullName { get; set; }
     }
 }
