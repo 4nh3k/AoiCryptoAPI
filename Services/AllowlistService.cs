@@ -23,6 +23,11 @@ namespace AoiCryptoAPI.Services
 
         public void Delete(string id) => _repository.Delete(id);
 
+        public AllowlistEntry GetByPoolAndUserAddress(string poolAddress, string userAddress) =>
+            _repository.Find(entry =>
+                entry.PoolAddress == poolAddress &&
+                entry.UserAddress == userAddress).FirstOrDefault();
+
         public List<AllowlistEntry> GetByPoolAddress(string poolAddress) =>
             _repository.Find(entry => entry.PoolAddress == poolAddress);
 

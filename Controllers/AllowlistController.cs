@@ -30,6 +30,18 @@ namespace AoiCryptoAPI.Controllers
             return Ok(entries);
         }
 
+        [HttpPost("pool/{poolAddress}/user/{userAddress}")]
+        public ActionResult Update(string poolAddress, string userAddress, [FromBody] AllowlistEntry entry)
+        {
+            var existingEntry = _allowlistService.GetByPoolAndUserAddress(poolAddress, userAddress);
+            if (existingEntry == null)
+            {
+                return NotFound();
+            }
+            _allowlistService.Update(existingEntry.Id, entry);
+            return Ok(new { message = "Allowlist entry updated successfully." });
+        }
+
         [HttpGet("user/{userAddress}")]
         public ActionResult<List<AllowlistEntry>> GetByUserAddress(string userAddress)
         {
