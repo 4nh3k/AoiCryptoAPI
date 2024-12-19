@@ -27,7 +27,7 @@ namespace AoiCryptoAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(entries.GroupBy(e => e.PoolAddress));
+            return Ok(entries);
         }
 
         [HttpGet("user/{userAddress}")]
@@ -38,7 +38,7 @@ namespace AoiCryptoAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(entries.GroupBy(e => e.UserAddress));
+            return Ok(entries);
         }
 
         [HttpPost("bulk")]
