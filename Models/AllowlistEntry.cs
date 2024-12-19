@@ -13,6 +13,10 @@ namespace AoiCryptoAPI.Models
 
         public string UserAddress { get; set; }
 
+        public string EmailAddress { get; set; }
+
+        public string UserFullName { get; set; }
+
         public string Status { get; set; }
     }
 }
