@@ -38,6 +38,7 @@ namespace AoiCryptoAPI.Controllers
             {
                 return NotFound();
             }
+            entry.Id = existingEntry.Id;
             _allowlistService.Update(existingEntry.Id, entry);
             return Ok(new { message = "Allowlist entry updated successfully." });
         }
