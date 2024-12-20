@@ -17,6 +17,8 @@ namespace AoiCryptoAPI.Models
 
         public string UserFullName { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public string Status { get; set; }
     }
 }

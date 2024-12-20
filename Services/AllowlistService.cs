@@ -38,6 +38,7 @@ namespace AoiCryptoAPI.Services
         {
             if (entries != null && entries.Count > 0)
             {
+                entries.ForEach(entry => entry.CreatedAt = new DateTime());
                 _repository.InsertMany(entries);
             }
         }
