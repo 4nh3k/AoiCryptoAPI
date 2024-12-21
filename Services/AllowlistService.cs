@@ -26,8 +26,7 @@ namespace AoiCryptoAPI.Services
         public AllowlistEntry GetByPoolAndUserAddress(string poolAddress, string userAddress) =>
             _repository.Find(entry =>
                 entry.PoolAddress == poolAddress &&
-                entry.UserAddress == userAddress &&
-                entry.Status.Equals("Accepted")).FirstOrDefault();
+                entry.UserAddress == userAddress).FirstOrDefault();
 
         public List<AllowlistEntry> GetByPoolAddress(string poolAddress) =>
             _repository.Find(entry => entry.PoolAddress == poolAddress);
@@ -48,7 +47,8 @@ namespace AoiCryptoAPI.Services
         {
             var allowlistEntry = _repository.Find(entry =>
                 entry.UserAddress == userAddress &&
-                entry.PoolAddress == poolAddress);
+                entry.PoolAddress == poolAddress &&
+                entry.Status.Equals("Accepted"));
 
             return allowlistEntry.Count > 0;
         }
