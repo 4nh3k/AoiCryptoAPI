@@ -43,6 +43,17 @@ namespace AoiCryptoAPI.Controllers
             return Ok(new { message = "Allowlist entry updated successfully." });
         }
 
+        [HttpGet("pool/{poolAddress}/user/{userAddress}")]
+        public ActionResult GetByPoolAddressAndUserAddress(string poolAddress, string userAddress)
+        {
+            var existingEntry = _allowlistService.GetByPoolAndUserAddress(poolAddress, userAddress);
+            if (existingEntry == null)
+            {
+                return NotFound();
+            }
+            return Ok(existingEntry);
+        }
+
         [HttpGet("user/{userAddress}")]
         public ActionResult<List<AllowlistEntry>> GetByUserAddress(string userAddress)
         {
